@@ -3,17 +3,16 @@ import { ArrowRight } from "lucide-react"
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center bg-black text-white px-6">
-      
-      {/* Background radial glow */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.15),transparent_60%)]" />
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black text-white px-6">
 
-      <div className="mx-auto max-w-4xl text-center">
+      <div className="mx-auto max-w-4xl text-center ">
         
-        {/* Icon */}
-        <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-white/5 backdrop-blur border border-white/10">
-          ✦
-        </div>
+        {/* Logo */}
+        <img
+          src="/Nobu.svg"
+          alt="Nobu Logo"
+          className="mx-auto mb-8 h-16 md:h-20 w-auto rounded-2xl bg-white/1 backdrop-blur border-white/10 border-4"
+        />
 
         {/* Title */}
         <h1 className="text-4xl font-bold leading-tight md:text-6xl">
@@ -21,7 +20,7 @@ export default function Hero() {
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-6 text-lg text-white/70">
+        <p className="mt-6 text-xl text-white/70 max-w-xl mx-auto">
           Creamos landing pages y sitios web que impulsan tus ventas y
           optimizan tus procesos digitales.
         </p>
