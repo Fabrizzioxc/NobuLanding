@@ -1,0 +1,49 @@
+---
+const services = [
+  {
+    title: "Landing Pages de Alto Impacto",
+    desc: "Diseños optimizados para transformar visitas en ventas y captar leads de calidad.",
+    icon: "rocket_launch",
+    tags: ["Conversión", "SEO", "Diseño Moderno"]
+  },
+  {
+    title: "Sitios Web Corporativos",
+    desc: "Estructuras sólidas y escalables que proyectan autoridad y profesionalismo digital.",
+    icon: "layers",
+    tags: ["Escalabilidad", "Arquitectura", "UX/UI"]
+  },
+  {
+    title: "Sistemas a Medida",
+    desc: "Herramientas personalizadas para automatizar procesos y centralizar tu operación.",
+    icon: "auto_awesome",
+    tags: ["Automatización", "Custom Code"]
+  }
+];
+---
+
+<section class="bg-nobuBlack py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {services.map(service => (
+        <div class="group p-8 rounded-3xl border border-zinc-800 bg-zinc-900/30 hover:bg-zinc-900/50 transition-all duration-300">
+          <span class="material-symbols-outlined text-nobuBlue text-4xl mb-6 block group-hover:scale-110 transition-transform">
+            {service.icon}
+          </span>
+          
+          <h3 class="font-bricolage text-2xl font-bold text-white mb-4">{service.title}</h3>
+          <p class="font-inter text-zinc-400 leading-relaxed mb-6">{service.desc}</p>
+          
+          <div class="flex flex-wrap gap-2">
+            {service.tags.map(tag => (
+              <span class="text-xs font-bold text-nobuBlue bg-nobuBlue/10 px-3 py-1 rounded-full uppercase tracking-wider">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
