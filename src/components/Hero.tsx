@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import AnimatedButton from "./ui/AnimattedButton"
 
 export default function Hero() {
   return (
@@ -26,11 +25,10 @@ export default function Hero() {
         </p>
 
         {/* CTA */}
-        <div className="mt-10">
-          <Button size="lg" className="rounded-full px-8">
-            Contáctanos
-            <ArrowRight className="ml-2" size={18} />
-          </Button>
+        <div className="mt-10 ">
+          <AnimatedButton textSize="text-xl">
+            Contactanos
+          </AnimatedButton>
         </div>
       </div>
     </section>
