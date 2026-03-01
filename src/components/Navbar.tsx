@@ -48,7 +48,7 @@ export default function Navbar() {
             />
             <span
             className={`font-semibold tracking-tight transition-all duration-300 ${
-                isScrolled ? "text-xl" : "text-3xl"
+                isScrolled ? "text-2xl" : "text-3xl"
             } text-white`}
             >
             Nobu
@@ -70,10 +70,10 @@ export default function Navbar() {
         {/* BOTÓN CTA */}
         <div className="hidden lg:flex items-center">
           <Button
-            size="sm"
+            size="lg"
             className="rounded-full px-5 text-base bg-white text-black hover:bg-white/90 font-medium"
           >
-            Solicitar demo
+            Contáctanos
           </Button>
         </div>
 
@@ -129,7 +129,7 @@ export default function Navbar() {
         size="sm"
         className="rounded-full mt-1 bg-white text-black hover:bg-white/90"
       >
-        Solicitar demo
+        Contáctanos
       </Button>
     </motion.div>
   )}
