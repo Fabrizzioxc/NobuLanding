@@ -26,8 +26,11 @@ export default function Hero() {
 
         {/* CTA */}
         <div className="mt-10 ">
-          <AnimatedButton textSize="text-xl">
-            Contactanos
+          <AnimatedButton
+            href="https://wa.me/51991702951"
+            textSize="text-xl"
+          >
+            Contáctanos
           </AnimatedButton>
         </div>
       </div>

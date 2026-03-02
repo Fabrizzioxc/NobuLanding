@@ -17,7 +17,7 @@ export default function AnimatedButton({
   href,
   onClick,
   className = "",
-    textSize = "text-base",
+  textSize = "text-base",
 }: AnimatedButtonProps) {
   const [isHovered, setIsHovered] = useState(false)
 
@@ -26,6 +26,8 @@ export default function AnimatedButton({
   return (
     <Component
       href={href}
+      target={href ? "_blank" : undefined}
+      rel={href ? "noopener noreferrer" : undefined}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -52,7 +54,7 @@ export default function AnimatedButton({
         }}
       />
 
-      {/* Contenido */}
+      {/* Texto */}
       <motion.span
         className={`relative z-10 font-medium whitespace-nowrap ${textSize}`}
         animate={{ color: isHovered ? "#ffffff" : "#000000" }}

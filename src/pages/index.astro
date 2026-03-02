@@ -2,13 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.tsx';
 import Navbar from '@/components/Navbar';
-import Services from '../components/Services.astro';
+import AboutSection from '../components/AboutSection.tsx';
 ---
 
 <Layout>
 	<Navbar client:load/>
 	<Hero client:load/>
-	<Services />
-	<Services />
-	
+	<AboutSection client:load/>
 </Layout>
