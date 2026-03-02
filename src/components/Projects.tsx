@@ -8,25 +8,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: "Landing SaaS Financiero",
+    title: "Frefity",
     description:
-      "Landing optimizada para conversión enfocada en captación de leads para un software financiero.",
-    image: "/images/project1.jpg",
-    url: "https://tusitio1.com",
+      "Empresa de consultoría CRM especializada en Microsoft Dynamics 365.",
+    image: "frefity_web_preview.webp",
+    url: "https://frefity.com",
   },
   {
-    title: "Landing Agencia Marketing",
+    title: "Kanry",
     description:
-      "Página estratégica orientada a generación de reuniones con estructura enfocada en ventas.",
-    image: "/images/project2.jpg",
-    url: "https://tusitio2.com",
+      "Software de gestión de inventario y ventas para empresas pymes.",
+    image: "kanry_web_preview.webp",
+    url: "https://kanry-landing-page.vercel.app",
   },
   {
-    title: "Landing Consultoría Premium",
+    title: "JYJ Servicios Generales",
     description:
-      "Landing de alta conversión con storytelling persuasivo y optimización SEO técnica.",
-    image: "/images/project3.jpg",
-    url: "https://tusitio3.com",
+      "Empresa de instalación de drywall, pintura profesional y servicios eléctricos.",
+    image: "jyj_web_preview.webp",
+    url: "https://jyj-two.vercel.app",
   },
 ];
 
