@@ -29,9 +29,16 @@ const BenefitsSection: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      
-      // 🔹 Animación del título
-      gsap.fromTo(
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+          toggleActions: "play none none none", // solo una vez
+        },
+      });
+  
+      // 🔹 1️⃣ Título primero
+      tl.fromTo(
         titleRef.current,
         {
           y: 40,
@@ -44,16 +51,11 @@ const BenefitsSection: React.FC = () => {
           filter: "blur(0px)",
           duration: 1,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 75%",
-            toggleActions: "play reverse play reverse",
-          },
         }
       )
   
-      // 🔹 Animación de las cards
-      gsap.fromTo(
+      // 🔹 2️⃣ Luego las cards
+      .fromTo(
         ".benefit-card",
         {
           y: 60,
@@ -63,20 +65,16 @@ const BenefitsSection: React.FC = () => {
           y: 0,
           opacity: 1,
           duration: 1,
-          ease: "power3.out",
           stagger: 0.15,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 35%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      )
+          ease: "power3.out",
+        },
+        "-=0.3" // empieza ligeramente antes de que termine el título (más fluido)
+      );
   
-    }, sectionRef)
+    }, sectionRef);
   
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
