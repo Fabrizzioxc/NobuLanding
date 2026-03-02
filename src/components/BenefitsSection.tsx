@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Badge from "./ui/Badge"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -83,11 +84,7 @@ const BenefitsSection: React.FC = () => {
       className="py-32 bg-black text-white"
     >
       <div className="w-full">
-
-        <span className="text-xs uppercase tracking-[0.15em] text-white/60">
-          Beneficios
-        </span>
-
+      <Badge text="beneficios" className="mb-4" />
         <h2
           ref={titleRef}
           className="mt-4 text-[clamp(1.6rem,3vw,2.2rem)] font-medium leading-tight max-w-[700px]"

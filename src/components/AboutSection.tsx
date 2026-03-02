@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Badge from "./ui/Badge";
 
 const AboutSection: React.FC = () => {
   const textRef = useRef<HTMLParagraphElement>(null);
@@ -32,9 +33,7 @@ const AboutSection: React.FC = () => {
   return (
     <section className="w-full bg-black py-24 px-6 md:px-12 lg:px-24">
       <div className="max-w-5xl mx-auto">
-        <span className="text-sm uppercase tracking-widest text-gray-500">
-          Acerca de Nobu
-        </span>
+      <Badge text="Nosotros" className="mb-4" />
 
         <p
           ref={textRef}

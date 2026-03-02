@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Phone, Rocket, CheckCircle2 } from "lucide-react";
+import Badge from './ui/Badge';
 
 const steps = [
   {
@@ -29,19 +30,15 @@ const ProcessSection: React.FC = () => {
     <section className="py-24 bg-black text-white px-6">
       <div className="max-w-6xl mx-auto">
         
-        {/* TOP — Header con fuente normal y tamaño estándar */}
-        <div className="mb-16">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-1.5 h-1.5 rounded-full bg-neutral-500" />
-            <span className="text-xs font-medium text-neutral-500 uppercase tracking-widest">
-              Proceso
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-normal leading-tight">
-            Un sistema claro,<br />
-            <span className="text-neutral-500">tres pasos concretos.</span>
-          </h2>
-        </div>
+      {/* TOP — Header */}
+      <div className="mb-16">
+        <Badge text="Proceso" className="mb-4" /> 
+        
+        <h2 className="text-3xl md:text-4xl font-normal leading-tight">
+          Un sistema claro,<br />
+          <span className="text-neutral-500">tres pasos concretos.</span>
+        </h2>
+      </div>
 
         {/* CONTENT — Grid */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">

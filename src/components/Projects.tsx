@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Badge from "./ui/Badge";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,9 +59,7 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto">
         {/* Badge */}
         <div className="flex justify-center">
-          <span className="px-4 py-1 text-sm border border-white/20 rounded-full bg-white/5 backdrop-blur-sm text-white/80">
-            Proyectos
-          </span>
+        <Badge text="Proyectos" className="mb-4" />
         </div>
 
         {/* Title */}
