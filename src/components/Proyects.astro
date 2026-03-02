@@ -1,0 +1,80 @@
+---
+const projects = [
+    {
+        title: "Landing SaaS Financiero",
+        description:
+            "Landing optimizada para conversión enfocada en captación de leads para un software financiero.",
+        image: "/images/project1.jpg",
+        url: "https://tusitio1.com",
+    },
+    {
+        title: "Landing Agencia Marketing",
+        description:
+            "Página estratégica orientada a generación de reuniones con estructura enfocada en ventas.",
+        image: "/images/project2.jpg",
+        url: "https://tusitio2.com",
+    },
+    {
+        title: "Landing Consultoría Premium",
+        description:
+            "Landing de alta conversión con storytelling persuasivo y optimización SEO técnica.",
+        image: "/images/project3.jpg",
+        url: "https://tusitio3.com",
+    },
+];
+---
+
+<section class="relative bg-black py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+        <!-- Badge -->
+        <div class="flex justify-center">
+            <span
+                class="px-4 py-1 text-sm border border-white/20 rounded-full bg-white/5 backdrop-blur-sm text-white/80"
+            >
+                Proyectos
+            </span>
+        </div>
+
+        <!-- Title -->
+        <h2
+            class="text-center text-3xl md:text-4xl font-semibold text-white mt-6"
+        >
+            Landing Pages que generan resultados
+        </h2>
+
+        <!-- Espaciado grande antes de cards -->
+        <div
+            class="mt-16 grid gap-10 md:gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        >
+            {
+                projects.map((project) => (
+                    <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group block"
+                    >
+                        {/* Image */}
+                        <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                class="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                        </div>
+
+                        {/* Text */}
+                        <div class="mt-5">
+                            <h3 class="text-lg font-semibold text-white group-hover:text-white/80 transition-colors">
+                                {project.title}
+                            </h3>
+                            <p class="mt-2 text-sm text-neutral-400 leading-relaxed">
+                                {project.description}
+                            </p>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>
