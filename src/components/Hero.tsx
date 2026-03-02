@@ -48,8 +48,11 @@ export default function Hero() {
         />
 
         {/* Title */}
-        <h1 className="reveal text-4xl font-bold leading-tight md:text-6xl tracking-tight">
-          Soluciones web que <br className="hidden md:block"/> impulsan tu negocio
+        <h1 className="reveal font-display text-5xl md:text-7xl font-bold leading-[1.1] tracking-wide max-w-[15ch] md:max-w-[100ch]">
+          Soluciones web que impulsan 
+          <span className="block mt-4 text-6xl md:text-7xl opacity-90">
+             tu negocio
+          </span>
         </h1>
 
         {/* Subtitle */}
