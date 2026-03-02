@@ -2,6 +2,7 @@ import React from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
+import AnimatedButton from "./ui/AnimattedButton"
 
 const menuItems = [
   { name: "Beneficios", href: "#Beneficios" },
@@ -69,12 +70,9 @@ export default function Navbar() {
 
         {/* BOTÓN CTA */}
         <div className="hidden lg:flex items-center">
-          <Button
-            size="lg"
-            className="rounded-full px-5 text-base bg-white text-black hover:bg-white/90 font-medium"
-          >
-            Contáctanos
-          </Button>
+          <AnimatedButton size="sm" href="https://wa.me/51991702951 ">
+          Contáctanos
+          </AnimatedButton>
         </div>
 
         {/* MOBILE */}
