@@ -34,7 +34,7 @@ export default function AnimatedButton({
       className={`
         relative overflow-hidden rounded-full
         px-8 pr-16 py-4 min-w-60
-        bg-[#3EC0F0] border border-[#3EC0F0]
+        bg-[#1596FF] border border-[#1596FF]
         inline-flex items-center justify-center
         ${className}
       `}
