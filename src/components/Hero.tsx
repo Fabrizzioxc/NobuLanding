@@ -58,7 +58,7 @@ export default function Hero() {
         <div className="reveal mt-10">
           <AnimatedButton
             href="https://wa.me/51991702951"
-            textSize="text-xl"
+            size="xl"
           >
             Contáctanos
           </AnimatedButton>
