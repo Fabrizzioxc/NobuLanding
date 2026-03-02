@@ -81,7 +81,7 @@ const BenefitsSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="Beneficios"
-      className="py-32 bg-black text-white"
+      className="py-32 bg-black text-white max-w-7xl mx-auto px-6 md:px-10"
       
     >
       <div className="w-full">

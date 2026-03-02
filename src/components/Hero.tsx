@@ -3,22 +3,18 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import AnimatedButton from "./ui/AnimattedButton";
+import NoiseBackground from "./NoiseBackground"; // Importa el shader
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const elements = heroRef.current?.querySelectorAll(".reveal");
-
     if (!elements) return;
 
     gsap.fromTo(
       elements,
-      {
-        y: 40,
-        opacity: 0,
-        filter: "blur(15px)",
-      },
+      { y: 40, opacity: 0, filter: "blur(15px)" },
       {
         y: 0,
         opacity: 1,
@@ -32,20 +28,28 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black text-white px-6" id="hero">
+      
+      {/* CAPA DEL SHADER (FONDO) */}
+      <NoiseBackground />
+
+      {/* OVERLAY DEGRADADO (Opcional, para mejorar contraste) */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/20 via-transparent to-black" />
+
+      {/* CONTENIDO (FRONT) */}
       <div
         ref={heroRef}
-        className="mx-auto max-w-4xl text-center"
+        className="relative z-10 mx-auto max-w-4xl text-center"
       >
         {/* Logo */}
         <img
           src="/Nobu.svg"
           alt="Nobu Logo"
-          className="reveal mx-auto mb-8 h-16 md:h-20 w-auto rounded-2xl bg-white/1 backdrop-blur border-white/10 border-4"
+          className="reveal mx-auto mb-8 h-16 md:h-20 w-auto rounded-2xl bg-white/5 backdrop-blur border-white/10 border-2"
         />
 
         {/* Title */}
-        <h1 className="reveal text-4xl font-bold leading-tight md:text-6xl">
-          Soluciones web que impulsan tu negocio
+        <h1 className="reveal text-4xl font-bold leading-tight md:text-6xl tracking-tight">
+          Soluciones web que <br className="hidden md:block"/> impulsan tu negocio
         </h1>
 
         {/* Subtitle */}
