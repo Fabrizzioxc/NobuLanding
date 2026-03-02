@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import AnimatedButton from "./ui/AnimattedButton";
-import NoiseBackground from "./NoiseBackground"; // Importa el shader
+import NoiseBackground from "./NoiseBackground";
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);

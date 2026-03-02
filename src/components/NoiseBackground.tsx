@@ -3,13 +3,14 @@ import React, { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-const NoiseMaterial = () => {
+const PremiumMeshMaterial = () => {
   const meshRef = useRef<THREE.Mesh>(null);
 
   const shaderArgs = useMemo(() => ({
     uniforms: {
       uTime: { value: 0 },
-      uColor: { value: new THREE.Color("#1596FF") }, // Tu Azul Nobu
+      uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+      uColor: { value: new THREE.Color("#1596FF") },
     },
     vertexShader: `
       varying vec2 vUv;
@@ -20,50 +21,67 @@ const NoiseMaterial = () => {
     `,
     fragmentShader: `
       uniform float uTime;
+      uniform vec2 uResolution;
       uniform vec3 uColor;
       varying vec2 vUv;
 
-      float random (in vec2 st) {
-          return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+      vec2 hash( vec2 p ) {
+          p = vec2( dot(p,vec2(127.1,311.7)), dot(p,vec2(269.5,183.3)) );
+          return -1.0 + 2.0*fract(sin(p)*43758.5453123);
       }
 
-      float noise (in vec2 st) {
-          vec2 i = floor(st);
-          vec2 f = fract(st);
-          float a = random(i);
-          float b = random(i + vec2(1.0, 0.0));
-          float c = random(i + vec2(0.0, 1.0));
-          float d = random(i + vec2(1.0, 1.0));
-          vec2 u = f*f*(3.0-2.0*f);
-          return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+      float noise( in vec2 p ) {
+          vec2 i = floor( p );
+          vec2 f = fract( p );
+          vec2 u = f*f*f*(f*(f*6.0-15.0)+10.0);
+          return mix( mix( dot( hash( i + vec2(0.0,0.0) ), f - vec2(0.0,0.0) ), 
+                           dot( hash( i + vec2(1.0,0.0) ), f - vec2(1.0,0.0) ), u.x),
+                      mix( dot( hash( i + vec2(0.0,1.0) ), f - vec2(0.0,1.0) ), 
+                           dot( hash( i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);
       }
 
       void main() {
           vec2 st = vUv;
+          st.x *= uResolution.x/uResolution.y;
           
-          // Escalado y movimiento de ondas
-          vec2 pos = st * 4.0; 
-          pos.x += uTime * 0.15;
-          pos.y += sin(uTime * 0.2 + st.x * 3.0) * 0.5;
+          vec2 q = vec2(0.);
+          q.x = noise( st + 0.11 * uTime );
+          q.y = noise( st + vec2(1.0) );
 
-          float n = noise(pos);
+          vec2 r = vec2(0.);
+          r.x = noise( st + 1.0*q + vec2(1.7,9.2)+ 0.15*uTime );
+          r.y = noise( st + 1.0*q + vec2(8.3,2.8)+ 0.126*uTime );
+
+          float f = noise(st+r);
+
+          // --- AJUSTE DE PESO Y SUAVIZADO ---
           
-          // Tu lógica de Splatter + Agujeros
-          float splatter = smoothstep(0.15, 0.25, n);
-          splatter -= smoothstep(0.38, 0.45, n);
+          // Bajamos un poco el peso de abajo para que no sature tanto de azul
+          float bottomWeight = (1.0 - vUv.y) * 0.35; 
+          float cornerWeight = length(vec2(vUv.x - 0.5, vUv.y - 1.0)) * 0.3;
 
-          // Color base muy oscuro para el fondo
-          vec3 backgroundColor = vec3(0.005);
-          vec3 finalColor = mix(backgroundColor, uColor, splatter * 0.6);
+          float finalNoise = f + bottomWeight + cornerWeight;
 
-          gl_FragColor = vec4(finalColor, 1.0);
+          // Bajamos el multiplicador de 4.5 a 2.8 para reducir la intensidad "neón"
+          float intensity = clamp((finalNoise * finalNoise) * 2.8, 0.0, 1.0);
+          
+          // Mezclamos el uColor con un tono más oscuro para que sea un azul más sobrio
+          vec3 nobleBlue = uColor * 0.7; 
+          vec3 color = mix(vec3(0.001, 0.002, 0.004), nobleBlue, intensity);
+
+          // Grano más sutil (bajado de 0.04 a 0.02)
+          float grain = fract(sin(dot(vUv, vec2(12.9898, 78.233))) * 43758.5453);
+          color += grain * 0.02;
+
+          gl_FragColor = vec4(color, 1.0);
       }
     `,
   }), []);
 
   useFrame((state) => {
     if (meshRef.current) {
-      (meshRef.current.material as THREE.ShaderMaterial).uniforms.uTime.value = state.clock.getElapsedTime();
+      const material = meshRef.current.material as THREE.ShaderMaterial;
+      material.uniforms.uTime.value = state.clock.getElapsedTime();
     }
   });
 
@@ -75,11 +93,11 @@ const NoiseMaterial = () => {
   );
 };
 
-export default function NoiseBackground() {
+export default function PremiumBackground() {
   return (
-    <div className="absolute inset-0 z-0 opacity-40"> {/* Ajusta opacidad si es muy brillante */}
-      <Canvas>
-        <NoiseMaterial />
+    <div className="absolute inset-0 z-0 bg-black pointer-events-none overflow-hidden">
+      <Canvas camera={{ position: [0, 0, 1] }}>
+        <PremiumMeshMaterial />
       </Canvas>
     </div>
   );
