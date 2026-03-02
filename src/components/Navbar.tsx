@@ -69,11 +69,23 @@ export default function Navbar() {
         </ul>
 
         {/* BOTÓN CTA */}
-        <div className="hidden lg:flex items-center">
-          <AnimatedButton size="sm" href="https://wa.me/51991702951 ">
-          Contáctanos
-          </AnimatedButton>
-        </div>
+        <Button
+          asChild
+          size="lg"
+          className={`
+            rounded-full
+            border transition-all duration-300
+            ${
+              isScrolled
+                ? "border-[#1596FF] text-black bg-[#1596FF] hover:bg-[#36A5FF] hover:border-[#36A5FF]"
+                : "border-white/30 bg-black text-white hover:bg-white hover:text-black" 
+            }
+          `}
+        >
+          <a href="https://wa.me/51991702951" target="_blank">
+            Contáctanos
+          </a>
+        </Button>
 
         {/* MOBILE */}
         <button
