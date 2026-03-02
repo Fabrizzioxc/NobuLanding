@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 
 const menuItems = [
-  { name: "Nosotros", href: "#AboutUs" },
-  { name: "Proceso", href: "#Process" },
-  { name: "Proyectos", href: "#projects" },
+  { name: "Beneficios", href: "#Beneficios" },
+  { name: "Proceso", href: "#Proceso" },
+  { name: "Proyectos", href: "#Proyectos" },
 ]
 
 export default function Navbar() {
