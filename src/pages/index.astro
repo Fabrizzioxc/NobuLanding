@@ -3,10 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.tsx';
 import Navbar from '@/components/Navbar';
 import AboutSection from '../components/AboutSection.tsx';
+import BenefitsSection from '../components/BenefitsSection.tsx';
 ---
 
 <Layout>
 	<Navbar client:load/>
 	<Hero client:load/>
 	<AboutSection client:load/>
+	<BenefitsSection client:load/>
 </Layout>
