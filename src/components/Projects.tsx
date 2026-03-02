@@ -55,7 +55,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section className="relative bg-black py-24 px-6">
+    <section className="relative bg-black py-24 px-6" id="Proyectos">
       <div className="max-w-6xl mx-auto">
         {/* Badge */}
         <div className="flex justify-center">

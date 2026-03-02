@@ -80,11 +80,12 @@ const BenefitsSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      id="benefits"
+      id="Beneficios"
       className="py-32 bg-black text-white"
+      
     >
       <div className="w-full">
-      <Badge text="beneficios" className="mb-4" />
+      <Badge text="beneficios y carecteristicas" className="mb-4" />
         <h2
           ref={titleRef}
           className="mt-4 text-[clamp(1.6rem,3vw,2.2rem)] font-medium leading-tight max-w-[700px]"

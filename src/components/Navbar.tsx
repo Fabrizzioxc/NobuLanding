@@ -2,7 +2,6 @@ import React from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
-import AnimatedButton from "./ui/AnimattedButton"
 
 const menuItems = [
   { name: "Beneficios", href: "#Beneficios" },
@@ -39,7 +38,7 @@ export default function Navbar() {
       >
         {/* LOGO */}
         <div className="flex items-center py-5">
-        <a href="/" className="flex items-center gap-2">
+        <a href="#hero" className="flex items-center gap-2">
             <img
             src="/Nobu-Logo.svg"
             alt="Nobu Logo"

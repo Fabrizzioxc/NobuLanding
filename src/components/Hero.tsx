@@ -31,7 +31,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black text-white px-6">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black text-white px-6" id="hero">
       <div
         ref={heroRef}
         className="mx-auto max-w-4xl text-center"

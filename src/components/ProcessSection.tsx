@@ -27,7 +27,7 @@ const ProcessSection: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="py-24 bg-black text-white px-6">
+    <section className="py-24 bg-black text-white px-6" id="Proceso">
       <div className="max-w-6xl mx-auto">
         
       {/* TOP — Header */}
