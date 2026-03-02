@@ -73,12 +73,13 @@ export default function Navbar() {
           asChild
           size="lg"
           className={`
+            hidden lg:inline-flex
             rounded-full
             border transition-all duration-300
             ${
               isScrolled
                 ? "border-[#1596FF] text-black bg-[#1596FF] hover:bg-[#36A5FF] hover:border-[#36A5FF]"
-                : "border-white/30 bg-black text-white hover:bg-white hover:text-black" 
+                : "border-white/30 bg-black text-white hover:bg-white hover:text-black"
             }
           `}
         >
