@@ -1,0 +1,108 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const projects = [
+  {
+    title: "Landing SaaS Financiero",
+    description:
+      "Landing optimizada para conversión enfocada en captación de leads para un software financiero.",
+    image: "/images/project1.jpg",
+    url: "https://tusitio1.com",
+  },
+  {
+    title: "Landing Agencia Marketing",
+    description:
+      "Página estratégica orientada a generación de reuniones con estructura enfocada en ventas.",
+    image: "/images/project2.jpg",
+    url: "https://tusitio2.com",
+  },
+  {
+    title: "Landing Consultoría Premium",
+    description:
+      "Landing de alta conversión con storytelling persuasivo y optimización SEO técnica.",
+    image: "/images/project3.jpg",
+    url: "https://tusitio3.com",
+  },
+];
+
+export default function Projects() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const cards = containerRef.current.querySelectorAll("a");
+
+    gsap.from(cards, {
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        toggleActions: "play none none none",
+        once: true,
+      },
+      opacity: 0,
+      y: 80,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+    });
+  }, []);
+
+  return (
+    <section className="relative bg-black py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        {/* Badge */}
+        <div className="flex justify-center">
+          <span className="px-4 py-1 text-sm border border-white/20 rounded-full bg-white/5 backdrop-blur-sm text-white/80">
+            Proyectos
+          </span>
+        </div>
+
+        {/* Title */}
+        <h2 className="text-center text-3xl md:text-4xl font-semibold text-white mt-6">
+          Landing Pages que generan resultados
+        </h2>
+
+        {/* Grid */}
+        <div
+          ref={containerRef}
+          className="mt-16 grid gap-10 md:gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {projects.map((project, index) => (
+            <a
+              key={index}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block"
+            >
+              {/* Image */}
+              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+
+              {/* Text */}
+              <div className="mt-5">
+                <h3 className="text-lg font-semibold text-white group-hover:text-white/80 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="mt-2 text-sm text-neutral-400 leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

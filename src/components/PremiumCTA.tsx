@@ -65,7 +65,7 @@ rgb(1, 42, 108),
             <div className="mt-5">
               <AnimatedButton
                 href={whatsappUrl}
-                textSize="text-xl"
+                size="xl"
               >
                 Empezar ahora
               </AnimatedButton>
