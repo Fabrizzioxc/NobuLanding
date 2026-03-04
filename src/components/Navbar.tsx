@@ -23,37 +23,48 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex justify-center px-4">
-      <motion.nav
-        initial={false}
-        animate={{
-          maxWidth: isScrolled ? "820px" : "1152px",
-          marginTop: isScrolled ? "8px" : "16px",
-          paddingLeft: isScrolled ? "20px" : "32px",
-          paddingRight: isScrolled ? "20px" : "32px",
-          borderColor: isScrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0)",
-        }}
-        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-        style={{ width: "100%" }}
-        className="flex items-center justify-between rounded-full bg-black/60 backdrop-blur-xl shadow-lg"
-      >
+    <motion.nav
+  initial={false}
+  animate={{
+    maxWidth: isScrolled ? "820px" : "1152px",
+    marginTop: isScrolled ? "8px" : "16px",
+    paddingLeft: isScrolled ? "20px" : "32px",
+    paddingRight: isScrolled ? "20px" : "32px",
+    // Fondo: de transparente a negro con opacidad
+    backgroundColor: isScrolled ? "rgba(0, 0, 0, 0.6)" : "rgba(0, 0, 0, 0)",
+    // Blur: de 0 a 20px
+    backdropFilter: isScrolled ? "blur(20px)" : "blur(0px)",
+    // Borde: invisible a sutil
+    borderColor: isScrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0)",
+    borderWidth: isScrolled ? "1px" : "0px",
+    // Sombra: Controlada dinámicamente para eliminar la mancha oscura al inicio
+    boxShadow: isScrolled 
+      ? "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)" 
+      : "0px 0px 0px rgba(0, 0, 0, 0)",
+  }}
+  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+  style={{ width: "100%" }}
+  // Eliminamos "shadow-lg" de aquí para que no sea estático
+  className="flex items-center justify-between rounded-full border-solid"
+>
         {/* LOGO */}
         <div className="flex items-center py-5">
-        <a href="#hero" className="flex items-center gap-2">
+          <a href="#hero" className="flex items-center gap-2">
             <img
-            src="/Nobu-Logo.svg"
-            alt="Nobu Logo"
-            className={`w-auto object-contain transition-all duration-300 ${
+              src="/Nobu-Logo.svg"
+              alt="Nobu Logo"
+              className={`w-auto object-contain transition-all duration-300 ${
                 isScrolled ? "h-6" : "h-8"
-            }`}
+              }`}
             />
             <span
-            className={`font-semibold tracking-tight transition-all duration-300 ${
+              className={`font-semibold tracking-tight transition-all duration-300 ${
                 isScrolled ? "text-2xl" : "text-3xl"
-            } text-white`}
+              } text-white`}
             >
-            Nobu
+              Nobu
             </span>
-        </a>
+          </a>
         </div>
 
         {/* MENU DESKTOP */}
