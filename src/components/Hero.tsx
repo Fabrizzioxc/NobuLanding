@@ -34,7 +34,7 @@ export default function Hero() {
       </Suspense>
 
       {/* Overlay */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/20 via-transparent to-black" />
+      <div className="absolute inset-0 z-1 bg-linear-to-b from-black/20 via-transparent to-black" />
 
       {/* CONTENIDO */}
       <div

@@ -12,22 +12,29 @@ const projects = [
     title: "Frefity",
     description:
       "Empresa de consultoría CRM especializada en Microsoft Dynamics 365.",
-    image: "frefity_web_preview.webp",
+    image: "frefity.webp",
     url: "https://frefity.com",
   },
   {
     title: "Kanry",
     description:
       "Software de gestión de inventario y ventas para empresas pymes.",
-    image: "kanry_web_preview.webp",
+    image: "kanry.webp",
     url: "https://kanry-landing-page.vercel.app",
   },
   {
     title: "JYJ Servicios Generales",
     description:
       "Empresa de instalación de drywall, pintura profesional y servicios eléctricos.",
-    image: "jyj_web_preview.webp",
+    image: "jyj.webp",
     url: "https://jyj-two.vercel.app",
+  },
+  {
+    title: "Aliza Seguros",
+    description:
+      "Soluciones en SCTR con emisión rápida y cumplimiento ante SUNAFIL para trabajos de alto riesgo.",
+    image: "alizaseguros.webp",
+    url: "https://alizaseguros.com",
   },
 ];
 
@@ -70,7 +77,7 @@ export default function Projects() {
         {/* Grid */}
         <div
           ref={containerRef}
-          className="mt-16 grid gap-10 md:gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          className="mt-16 grid gap-10 md:gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
         >
           {projects.map((project, index) => (
             <a
@@ -85,7 +92,7 @@ export default function Projects() {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-75 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
 
