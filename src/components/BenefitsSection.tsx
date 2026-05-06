@@ -27,131 +27,101 @@ const benefits = [
 const BenefitsSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
-  const leftLightRef = useRef<HTMLDivElement>(null)
-  const rightLightRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement[]>([])
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 1. Animación de entrada
-      const tl = gsap.timeline({
+  cardsRef.current = []
+  const addToRefs = (el: HTMLDivElement) => {
+    if (el && !cardsRef.current.includes(el)) {
+      cardsRef.current.push(el)
+    }
+  }
+
+ useEffect(() => {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  if (prefersReducedMotion) return
+
+  const ctx = gsap.context(() => {
+
+    // TITLE
+    gsap.from(titleRef.current, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 55%",
+      }
+    })
+
+    // CARDS (FIX REAL)
+    cardsRef.current.forEach((card, i) => {
+      const x = i % 3 === 0 ? -20 : i % 3 === 2 ? 20 : 0
+
+      gsap.from(card, {
+        y: 60,
+        x,
+        opacity: 0,
+        scale: 0.96,
+        duration: 0.65,
+        ease: "power3.out",
+        delay: i * 0.06, // stagger manual (más estable)
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-  
-      tl.fromTo(titleRef.current,
-        { y: 40, opacity: 0, filter: "blur(12px)" },
-        { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.2, ease: "power4.out" }
-      )
-      .fromTo(".benefit-card",
-        { y: 80, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out" },
-        "-=0.6"
-      );
-
-      // 2. PARALLAX AGRESIVO Y FLUIDO PARA LOS FOCOS AZULES
-      gsap.to(leftLightRef.current, {
-        y: "25%",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
+          start: "top 50%",
         }
-      });
+      })
+    })
 
-      gsap.to(rightLightRef.current, {
-        y: "-25%",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        }
-      });
-  
-    }, sectionRef);
-  
-    return () => ctx.revert();
-  }, []);
+  }, sectionRef)
+
+  return () => ctx.revert()
+}, [])
 
   return (
     <section
       ref={sectionRef}
       id="Beneficios"
-      className="relative py-48 bg-black text-white overflow-hidden"
+      className="relative py-32 bg-black text-white overflow-hidden"
     >
-      {/* --- DIFUMINADOS DE TRANSICIÓN ULTRA SUAVES --- */}
-      <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-black via-black/90 to-transparent z-20 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-20 pointer-events-none" />
+      {/* Gradientes ligeros */}
+      <div className="absolute top-0 left-0 w-full h-40 bg-linear-to-b from-black to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-black to-transparent pointer-events-none" />
 
-      {/* --- NOISE Y FOCOS AZULES INTENSOS --- */}
-      
-      {/* Noise Grano Premium */}
-      <div 
-        className="absolute inset-0 opacity-[0.06] pointer-events-none z-[5] mix-blend-overlay" 
-        style={{ backgroundImage: `url("https://grainy-gradients.vercel.app/noise.svg")` }} 
-      />
-
-      {/* FOCO AZUL IZQUIERDA (Brillo aumentado) */}
-      <div 
-        ref={leftLightRef}
-        className="absolute left-[-15%] top-[-10%] w-[60%] h-[100%] pointer-events-none z-0 opacity-60"
-        style={{ 
-          background: "radial-gradient(circle at center, rgba(21, 150, 255, 0.25) 0%, rgba(21, 150, 255, 0.05) 40%, transparent 70%)",
-          filter: "blur(110px)" 
-        }}
-      />
-      
-      {/* FOCO AZUL DERECHA (Brillo aumentado) */}
-      <div 
-        ref={rightLightRef}
-        className="absolute right-[-15%] bottom-[-10%] w-[60%] h-[100%] pointer-events-none z-0 opacity-50"
-        style={{ 
-          background: "radial-gradient(circle at center, rgba(21, 150, 255, 0.22) 0%, rgba(21, 150, 255, 0.04) 40%, transparent 70%)",
-          filter: "blur(110px)"
-        }}
-      />
-
-      {/* Rayas de luz en los bordes para definir la sección */}
-      <div className="absolute left-0 top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-[#1596FF]/30 to-transparent z-10" />
-      <div className="absolute right-0 top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-[#1596FF]/20 to-transparent z-10" />
-
-
-      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-30">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
         <Badge text="beneficios y características" className="mb-4" />
+
         <h2
           ref={titleRef}
-          className="mt-4 text-[clamp(2rem,5vw,2.8rem)] font-medium leading-[1.1] max-w-[850px]"
+          className="mt-4 text-[clamp(2rem,5vw,2.6rem)] font-medium leading-[1.1] max-w-212.5"
         >
           Mucho más que diseño. <br />
-          <span className="text-white/20">Un sistema pensado para generar resultados reales.</span>
+          <span className="text-white/30">
+            Un sistema pensado para generar resultados reales.
+          </span>
         </h2>
 
-        <div className="mt-24 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon
+
             return (
               <div
                 key={index}
-                className="benefit-card group p-12 border border-white/5 bg-white/[0.01] backdrop-blur-[2px] relative overflow-hidden transition-all duration-700 hover:border-[#1596FF]/40"
+                ref={addToRefs}
+                className="group p-8 border border-white/10 bg-white/2 transition-all duration-300 hover:border-[#1596FF]/40 will-change-transform"
               >
-                {/* Glow interno al hacer hover (Azul Nobu) */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(21,150,255,0.06),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                
-                <div className="relative z-10">
-                  <div className="w-12 h-12 flex items-center justify-center mb-10 text-white/30 transition-all duration-700 group-hover:text-[#1596FF] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(21,150,255,0.5)]">
-                    <Icon size={34} strokeWidth={1} />
-                  </div>
-                  <h3 className="text-xl font-medium mb-4 group-hover:text-white transition-colors duration-500">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-[15px] leading-relaxed text-white/30 group-hover:text-white/60 transition-colors duration-500">
-                    {benefit.text}
-                  </p>
+                <div className="mb-6 text-white/40 transition-all duration-300 group-hover:text-[#1596FF] group-hover:scale-110">
+                  <Icon size={28} strokeWidth={1.5} />
                 </div>
+
+                <h3 className="text-lg font-medium mb-2 transition-colors duration-300 group-hover:text-white">
+                  {benefit.title}
+                </h3>
+
+                <p className="text-sm text-white/50 leading-relaxed transition-colors duration-300 group-hover:text-white/70">
+                  {benefit.text}
+                </p>
               </div>
             )
           })}
