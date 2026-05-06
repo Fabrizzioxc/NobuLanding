@@ -12,13 +12,13 @@ import Footer from '../components/Footer.tsx';
 ---
 
 <Layout>
-	<Navbar client:load/>
-	<Hero client:load/>
-	<AboutSection client:load/>
-	<BenefitsSection client:load/>
-	<ProcessSection client:load/>
-	<Proyects client:load />
-	<FaqSection client:load/>
-	<PremiumCTA client:load/>
-	<Footer client:load/>
+	<Navbar client:idle/>
+	<Hero client:visible/>
+	<AboutSection client:idle/>
+	<BenefitsSection client:idle/>
+	<ProcessSection client:idle/>
+	<Proyects client:idle />
+	<FaqSection client:idle/>
+	<PremiumCTA client:idle/>
+	<Footer client:idle/>
 </Layout>
